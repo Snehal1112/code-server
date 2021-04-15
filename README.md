@@ -1,90 +1,77 @@
-# code-server
+# code-server &middot; [!["GitHub Discussions"](https://img.shields.io/badge/%20GitHub-%20Discussions-gray.svg?longCache=true&logo=github&colorB=purple)](https://github.com/cdr/code-server/discussions) [!["Join us on Slack"](https://img.shields.io/badge/join-us%20on%20slack-gray.svg?longCache=true&logo=slack&colorB=brightgreen)](https://cdr.co/join-community) [![Twitter Follow](https://img.shields.io/twitter/follow/CoderHQ?label=%40CoderHQ&style=social)](https://twitter.com/coderhq)
 
-[!["Open Issues"](https://img.shields.io/github/issues-raw/cdr/code-server.svg)](https://github.com/cdr/code-server/issues)
-[!["Latest Release"](https://img.shields.io/github/release/cdr/code-server.svg)](https://github.com/cdr/code-server/releases/latest)
-[![MIT license](https://img.shields.io/badge/license-MIT-green.svg)](https://github.com/cdr/code-server/blob/master/LICENSE)
-[![Discord](https://img.shields.io/discord/463752820026376202.svg?label=&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2)](https://discord.gg/zxSwN8Z)
+![Lines](https://img.shields.io/badge/Coverage-51.47%25-green.svg)
+[![See latest docs](https://img.shields.io/static/v1?label=Docs&message=see%20latest%20&color=blue)](https://github.com/cdr/code-server/tree/v3.9.3/docs)
 
-`code-server` is [VS Code](https://github.com/Microsoft/vscode) running on a remote server, accessible through the browser.
+Run [VS Code](https://github.com/Microsoft/vscode) on any machine anywhere and access it in the browser.
 
-Try it out:
-```bash
-docker run -it -p 127.0.0.1:8443:8443 -v "${PWD}:/home/coder/project" codercom/code-server --allow-http --no-auth
-```
+![Screenshot](./docs/assets/screenshot.png)
 
-- Code on your Chromebook, tablet, and laptop with a consistent dev environment.
-	- If you have a Windows or Mac workstation, more easily develop for Linux.
-- Take advantage of large cloud servers to speed up tests, compilations, downloads, and more.
-- Preserve battery life when you're on the go.
-	- All intensive computation runs on your server.
-	- You're no longer running excess instances of Chrome.
+## Highlights
 
-![Screenshot](/doc/assets/ide.png)
+- Code on any device with a consistent development environment
+- Use cloud servers to speed up tests, compilations, downloads, and more
+- Preserve battery life when you're on the go; all intensive tasks run on your server
+
+## Requirements
+
+For a good experience, we recommend at least:
+
+- 1 GB of RAM
+- 2 cores
+
+You can use whatever linux distribution floats your boat but in our [guide](./docs/guide.md) we assume Debian on Google Cloud.
 
 ## Getting Started
 
-### Run over SSH
+There are three ways you can get started:
 
-Use [sshcode](https://github.com/codercom/sshcode) for a simple setup.
+1. Using the [install script](./install.sh), which automates most of the process. The script uses the system package manager (if possible)
+2. Manually installing code-server; see [Installation](./docs/install.md) for instructions applicable to most use cases
+3. Use our one-click buttons and guides to [deploy code-server to a popular cloud provider](https://github.com/cdr/deploy-code-server) ⚡
 
-### Docker
+If you choose to use the install script, you can preview what occurs during the install process:
 
-See docker oneliner mentioned above. Dockerfile is at [/Dockerfile](/Dockerfile).
+```bash
+curl -fsSL https://code-server.dev/install.sh | sh -s -- --dry-run
+```
 
-### Binaries
+To install, run:
 
-1.  [Download a binary](https://github.com/cdr/code-server/releases) (Linux and OS X supported. Windows coming soon)
-2.  Start the binary with the project directory as the first argument
+```bash
+curl -fsSL https://code-server.dev/install.sh | sh
+```
 
-    ```
-    code-server <initial directory to open>
-    ```
-	> You will be prompted to enter the password shown in the CLI
-	`code-server` should now be running at https://localhost:8443.
+When done, the install script prints out instructions for running and starting code-server.
 
-	> code-server uses a self-signed SSL certificate that may prompt your browser to ask you some additional questions before you proceed. Please [read here](doc/self-hosted/index.md) for more information.
+We also have an in-depth [setup and configuration](./docs/guide.md) guide.
 
-For detailed instructions and troubleshooting, see the [self-hosted quick start guide](doc/self-hosted/index.md).
+### code-server --link
 
-Quickstart guides for [Google Cloud](doc/admin/install/google_cloud.md), [AWS](doc/admin/install/aws.md), and [DigitalOcean](doc/admin/install/digitalocean.md).
+We're working on a cloud platform that makes deploying and managing code-server easier.
+Consider running code-server with the beta flag `--link` if you don't want to worry about
 
-How to [secure your setup](/doc/security/ssl.md).
+- TLS
+- Authentication
+- Port Forwarding
 
-## Development
+```bash
+$ code-server --link
+Proxying code-server, you can access your IDE at https://valmar-jon.cdr.co
+```
 
-### Known Issues
+## FAQ
 
-- Creating custom VS Code extensions and debugging them doesn't work.
+See [./docs/FAQ.md](./docs/FAQ.md).
 
-### Future
-- **Stay up to date!** Get notified about new releases of code-server.
-  ![Screenshot](/doc/assets/release.gif)
-- Windows support.
-- Electron and Chrome OS applications to bridge the gap between local<->remote.
-- Run VS Code unit tests against our builds to ensure features work as expected.
+## Want to help?
 
-### Extensions
+See [CONTRIBUTING](./docs/CONTRIBUTING.md) for details.
 
-At the moment we can't use the official VSCode Marketplace. We've created a custom extension marketplace focused around open-sourced extensions. However, if you have access to the `.vsix` file, you can manually install the extension.
+## Hiring
 
-## Telemetry
+Interested in [working at Coder](https://coder.com)? Check out [our open positions](https://jobs.lever.co/coder)!
 
-Use the `--disable-telemetry` flag or set `DISABLE_TELEMETRY=true` to disable tracking ENTIRELY.
+## For Organizations
 
-We use data collected to improve code-server.
-
-## Contributing
-
-Development guides are coming soon.
-
-## License
-
-[MIT](LICENSE)
-
-## Enterprise
-
-Visit [our enterprise page](https://coder.com/enterprise) for more information about our enterprise offering.
-
-## Commercialization
-
-If you would like to commercialize code-server, please contact contact@coder.com.
+Visit [our website](https://coder.com) for more information about remote development for your organization or enterprise.
